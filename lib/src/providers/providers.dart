@@ -3,7 +3,6 @@ import 'package:http/http.dart' as http;
 
 import 'package:propiedades/src/models/despacho_model.dart';
 import 'package:propiedades/src/models/login_model.dart';
-import 'package:propiedades/src/services/services.dart';
 import 'package:propiedades/src/shared_preferences/shared_preferences.dart';
 
 part 'user_provider.dart';
