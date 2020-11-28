@@ -26,7 +26,7 @@ class _NavigationPageState extends State<NavigationPage> {
           items: [
             FaIcon(FontAwesomeIcons.user, size: 22, color: secondaryColor),
             FaIcon(FontAwesomeIcons.home, size: 22, color: secondaryColor),
-            FaIcon(FontAwesomeIcons.directions, size: 22, color: secondaryColor),
+            // FaIcon(FontAwesomeIcons.directions, size: 22, color: secondaryColor),
           ],
           onTap: (value) {
             currentIndex = value;
@@ -48,8 +48,8 @@ class _NavigationPageState extends State<NavigationPage> {
           },
           children: [
             ProfilePage(),
-            HomePage(),
-            MapaPage(),
+            DespachoPage(),
+            // MapaPage(),
           ],
         ));
   }

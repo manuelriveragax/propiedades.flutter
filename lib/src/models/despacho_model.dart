@@ -1,12 +1,12 @@
 // To parse this JSON data, do
 //
-//     final getDespachoModel = getDespachoModelFromJson(jsonString);
+//     final despachoModel = despachoModelFromJson(jsonString);
 
 import 'dart:convert';
 
-DespachoModel getDespachoModelFromJson(String str) => DespachoModel.fromJson(json.decode(str));
+DespachoModel despachoModelFromJson(String str) => DespachoModel.fromJson(json.decode(str));
 
-String getDespachoModelToJson(DespachoModel data) => json.encode(data.toJson());
+String despachoModelToJson(DespachoModel data) => json.encode(data.toJson());
 
 class DespachoModel {
   DespachoModel({

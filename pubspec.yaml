@@ -24,13 +24,15 @@ dependencies:
   flutter:
     sdk: flutter
   animate_do: ^1.7.3
+  bot_toast: ^3.0.5
   cupertino_icons: ^1.0.0
   curved_navigation_bar: ^0.3.4
-  flutter_bloc: ^6.1.1
-  font_awesome_flutter: ^8.10.0
-  http: ^0.12.2
-  hooks_riverpod: ^0.12.1
   flutter_hooks: ^0.14.1
+  font_awesome_flutter: ^8.10.0
+  google_maps_flutter: ^1.0.6
+  hooks_riverpod: ^0.12.1
+  http: ^0.12.2
+  shared_preferences: ^0.5.12+4
 
 dev_dependencies:
   flutter_test:

@@ -8,9 +8,10 @@ Widget customTextCard(String labelText, String placeholder) {
       decoration: InputDecoration(
         contentPadding: EdgeInsets.only(bottom: 3),
         labelText: labelText,
+        labelStyle: midText,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         hintText: placeholder,
-        hintStyle: midText,
+        hintStyle: smallText,
       ),
     ),
   );
