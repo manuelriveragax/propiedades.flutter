@@ -12,7 +12,6 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hooks_riverpod/all.dart';
 
 import 'package:propiedades/src/helpers/helpers.dart';
-import 'package:propiedades/src/pages/profile_page.dart';
 import 'package:propiedades/src/providers/providers.dart';
 import 'package:propiedades/src/shared_preferences/shared_preferences.dart';
 import 'package:propiedades/src/themes/styles.dart';
@@ -22,3 +21,4 @@ part 'navigation_page.dart';
 part 'login_page.dart';
 part 'mapa_page.dart';
 part 'despacho_page.dart';
+part 'profile_page.dart';
