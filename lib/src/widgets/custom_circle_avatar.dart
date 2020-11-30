@@ -27,10 +27,14 @@ class CustomCircleAvatar extends StatelessWidget {
               color: secondaryColor,
               shape: BoxShape.circle,
             ),
-            child: FaIcon(
-              icon,
+            child: IconButton(
+              alignment: Alignment.center,
+              padding: EdgeInsets.zero,
               color: primaryColor,
-              size: smallIcon,
+              icon: FaIcon(icon, size: smallIcon),
+              onPressed: () {
+                customNotification('Se presiono el boton de camara');
+              },
             ),
           ),
         )
