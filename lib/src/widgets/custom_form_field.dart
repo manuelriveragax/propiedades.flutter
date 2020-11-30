@@ -24,15 +24,11 @@ class CustomFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-
     return FadeInLeft(
       animate: animate,
       from: 250,
       duration: duration,
       child: Container(
-        width: width * 0.80,
-        height: 50,
         decoration: BoxDecoration(
           border: Border.all(color: primaryColor),
           borderRadius: BorderRadius.circular(10.0),
@@ -43,11 +39,11 @@ class CustomFormField extends StatelessWidget {
           obscureText: obscureText,
           controller: textController,
           decoration: InputDecoration(
-            hintText: hintText,
-            border: InputBorder.none,
-            icon: Icon(icon, color: primaryColor, size: midIcon),
-            suffixIcon: suffixIcon,
-          ),
+              hintText: hintText,
+              border: InputBorder.none,
+              icon: Icon(icon, color: primaryColor, size: midIcon),
+              suffixIcon: suffixIcon,
+              contentPadding: EdgeInsets.symmetric(vertical: 15)),
         ),
       ),
     );

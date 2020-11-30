@@ -21,6 +21,6 @@ class DespachoProvider {
 final despachoProvider = Provider((ref) => DespachoProvider());
 
 final futureDespachoProvider = FutureProvider<DespachoModel>((ref) async {
-  final despachoResponse = ref.read(despachoProvider);
+  final despachoResponse = ref.watch(despachoProvider);
   return despachoResponse.getDespacho();
 });
