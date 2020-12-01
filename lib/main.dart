@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
         accentColor: secondaryColor,
       ),
       title: 'Propiedades',
-      initialRoute: 'navigation',
+      initialRoute: 'login',
       routes: {
         'login': (context) => LoginPage(),
         'navigation': (context) => NavigationPage(),
