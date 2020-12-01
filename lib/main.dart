@@ -7,6 +7,8 @@ import 'package:propiedades/src/pages/pages.dart';
 import 'package:propiedades/src/shared_preferences/shared_preferences.dart';
 import 'package:propiedades/src/themes/styles.dart';
 
+import 'src/pages/pages.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final prefs = new UserPreferences();
@@ -35,6 +37,7 @@ class MyApp extends StatelessWidget {
         'login': (context) => LoginPage(),
         'navigation': (context) => NavigationPage(),
         'despacho': (context) => DespachoPage(),
+        'map': (context) => MapaPage(),
       },
     );
   }

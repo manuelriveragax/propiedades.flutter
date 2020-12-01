@@ -15,10 +15,12 @@ import 'package:propiedades/src/helpers/helpers.dart';
 import 'package:propiedades/src/providers/providers.dart';
 import 'package:propiedades/src/shared_preferences/shared_preferences.dart';
 import 'package:propiedades/src/themes/styles.dart';
+import 'package:propiedades/src/widgets/propiedades_map_list.dart';
 import 'package:propiedades/src/widgets/widgets.dart';
 
 part 'navigation_page.dart';
 part 'login_page.dart';
-part 'mapa_page.dart';
+part 'old_map_page.dart';
 part 'despacho_page.dart';
 part 'profile_page.dart';
+part 'mapa_page.dart';

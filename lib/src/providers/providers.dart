@@ -7,3 +7,4 @@ import 'package:propiedades/src/shared_preferences/shared_preferences.dart';
 
 part 'user_provider.dart';
 part 'despacho_provider.dart';
+part 'propiedades_provider.dart';

@@ -1,62 +1,137 @@
 part of 'pages.dart';
 
-class MapaPage extends StatefulWidget {
-  final double latitude;
-  final double longitude;
-  final String alias;
-
-  const MapaPage({Key key, this.latitude, this.longitude, this.alias}) : super(key: key);
-
+class MapaPage extends StatefulHookWidget {
   @override
-  State<MapaPage> createState() => MapaPageState();
+  _NewMapPageState createState() => _NewMapPageState();
 }
 
-class MapaPageState extends State<MapaPage> {
-  Completer<GoogleMapController> _controller = Completer();
+class _NewMapPageState extends State<MapaPage> with AutomaticKeepAliveClientMixin {
+  List<Marker> allMarkers = [];
+
+  GoogleMapController _mapController;
+  PageController _pageController;
+  int prevPage;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController(initialPage: 0, viewportFraction: 0.8)..addListener(_onScroll);
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    _mapController.dispose();
+    super.dispose();
+  }
+
+  void _onScroll() {
+    if (_pageController.page.toInt() != prevPage) {
+      prevPage = _pageController.page.toInt();
+      moveCamera();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    final CameraPosition _kGooglePlex = CameraPosition(
-      target: LatLng(widget.latitude, widget.longitude),
-      zoom: 14.5,
-    );
+    super.build(context);
 
-    Set<Marker> marker = new Set<Marker>();
-    marker.add(new Marker(
-      markerId: MarkerId('marcador'),
-      position: LatLng(widget.latitude, widget.longitude),
-    ));
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
 
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(widget.alias),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.location_searching),
-            onPressed: () async {
-              _centerLocation();
-            },
+    final despachoResponse = useProvider(futureDespachoProvider);
+
+    return despachoResponse.when(
+      error: (e, s) => Text('Error: $e'),
+      loading: () => Center(child: CircularProgressIndicator(backgroundColor: primaryColor)),
+      data: (despacho) {
+        despacho.propiedades.forEach((propiedad) {
+          allMarkers.add(
+            Marker(
+              markerId: MarkerId(propiedad.clienteId.toString()),
+              draggable: false,
+              position: LatLng(propiedad.latitud, propiedad.longitud),
+              infoWindow: InfoWindow(
+                title: propiedad.alias,
+                snippet: propiedad.colonia,
+              ),
+            ),
+          );
+        });
+
+        return SafeArea(
+          child: Scaffold(
+            body: Stack(
+              children: [
+                Container(
+                  height: height,
+                  width: width,
+                  child: GoogleMap(
+                    padding: EdgeInsets.only(bottom: 200, top: 0, right: 0, left: 0),
+                    zoomControlsEnabled: true,
+                    compassEnabled: false,
+                    mapToolbarEnabled: true,
+                    myLocationButtonEnabled: false,
+                    myLocationEnabled: false,
+                    markers: Set.from(allMarkers),
+                    initialCameraPosition: CameraPosition(
+                      target: LatLng(despacho.propiedades[0].latitud, despacho.propiedades[0].longitud),
+                      zoom: 20.0,
+                      bearing: 45.0,
+                      tilt: 45.0,
+                    ),
+                    onMapCreated: _onMapCreated,
+                  ),
+                ),
+                Positioned(
+                  bottom: 20,
+                  child: Container(
+                    height: height * 0.25,
+                    width: MediaQuery.of(context).size.width,
+                    child: PageView.builder(
+                      controller: _pageController,
+                      itemCount: despacho.propiedades.length,
+                      itemBuilder: (_, index) {
+                        return PropiedadesMapList(index, _pageController);
+                      },
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
-        ],
-      ),
-      body: GoogleMap(
-        mapType: MapType.normal,
-        initialCameraPosition: _kGooglePlex,
-        onMapCreated: (GoogleMapController controller) {
-          _controller.complete(controller);
-        },
-        markers: marker,
+        );
+      },
+    );
+  }
+
+  void _onMapCreated(controller) {
+    setState(() {
+      _mapController = controller;
+    });
+  }
+
+  void moveCamera() {
+    _mapController.animateCamera(
+      CameraUpdate.newCameraPosition(
+        CameraPosition(
+          target: allMarkers[_pageController.page.toInt()].position,
+          zoom: 20.0,
+          bearing: 45.0,
+          tilt: 45.0,
+        ),
       ),
     );
   }
 
-  Future<void> _centerLocation() async {
-    final GoogleMapController controller = await _controller.future;
-    controller.animateCamera(
-      CameraUpdate.newCameraPosition(
-        CameraPosition(target: LatLng(widget.latitude, widget.longitude), zoom: 14.5),
-      ),
-    );
-  }
+  // Future<void> _centerLocation() async {
+  //   await _mapController.animateCamera(
+  //     CameraUpdate.newCameraPosition(
+  //       CameraPosition(target: allMarkers[_pageController.page.toInt()].position, zoom: 14.5),
+  //     ),
+  //   );
+  // }
+
+  @override
+  bool get wantKeepAlive => true;
 }

@@ -22,25 +22,31 @@ class DespachoPage extends HookWidget {
               itemBuilder: (context, index) {
                 return Padding(
                   padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 8.0),
-                  child: ListTile(
-                    tileColor: primaryColor,
-                    title: Text(data.propiedades[index].alias, style: TextStyle(color: secondaryColor)),
-                    subtitle: Text(data.propiedades[index].calle, style: TextStyle(color: secondaryColor)),
-                    leading: Icon(Icons.house, color: secondaryColor),
-                    trailing: IconButton(
-                      icon: Icon(Icons.navigation, color: secondaryColor),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          CupertinoPageRoute(
-                            builder: (context) => MapaPage(
-                              latitude: data.propiedades[index].latitud.toDouble(),
-                              longitude: data.propiedades[index].longitud.toDouble(),
-                              alias: data.propiedades[index].alias,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(20.0),
+                    child: ListTile(
+                      tileColor: primaryColor,
+                      title: Text(data.propiedades[index].alias, style: TextStyle(color: secondaryColor)),
+                      subtitle: Text(data.propiedades[index].calle, style: TextStyle(color: secondaryColor)),
+                      leading: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8),
+                        child: Icon(Icons.house, color: secondaryColor, size: bigIcon),
+                      ),
+                      trailing: IconButton(
+                        icon: Icon(Icons.navigation, color: secondaryColor, size: bigIcon),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            CupertinoPageRoute(
+                              builder: (context) => MapaPage(
+                                  // latitude: data.propiedades[index].latitud.toDouble(),
+                                  // longitude: data.propiedades[index].longitud.toDouble(),
+                                  // alias: data.propiedades[index].alias,
+                                  ),
                             ),
-                          ),
-                        );
-                      },
+                          );
+                        },
+                      ),
                     ),
                   ),
                 );
