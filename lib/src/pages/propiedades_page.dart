@@ -1,11 +1,12 @@
 part of 'pages.dart';
 
-class MapaPage extends StatefulHookWidget {
+class PropiedadesPage extends StatefulHookWidget {
   @override
   _NewMapPageState createState() => _NewMapPageState();
 }
 
-class _NewMapPageState extends State<MapaPage> with AutomaticKeepAliveClientMixin {
+class _NewMapPageState extends State<PropiedadesPage> {
+  // with AutomaticKeepAliveClientMixin
   List<Marker> allMarkers = [];
 
   GoogleMapController _mapController;
@@ -34,7 +35,7 @@ class _NewMapPageState extends State<MapaPage> with AutomaticKeepAliveClientMixi
 
   @override
   Widget build(BuildContext context) {
-    super.build(context);
+    // super.build(context);
 
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
@@ -61,6 +62,7 @@ class _NewMapPageState extends State<MapaPage> with AutomaticKeepAliveClientMixi
 
         return SafeArea(
           child: Scaffold(
+            appBar: AppBar(),
             body: Stack(
               children: [
                 Container(
@@ -132,6 +134,6 @@ class _NewMapPageState extends State<MapaPage> with AutomaticKeepAliveClientMixi
   //   );
   // }
 
-  @override
-  bool get wantKeepAlive => true;
+  // @override
+  // bool get wantKeepAlive => true;
 }

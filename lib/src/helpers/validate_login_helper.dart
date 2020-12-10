@@ -7,7 +7,7 @@ validateLogin(BuildContext context, String email, String password) async {
     BotToast.cleanAll();
 
     if (res != null) {
-      Navigator.push(context, CupertinoPageRoute(builder: (context) => NavigationPage()));
+      Navigator.push(context, CupertinoPageRoute(builder: (context) => HomePage()));
     } else if (res == null) {
       return customNotification('Usuario o Contraseña incorrectos');
     }

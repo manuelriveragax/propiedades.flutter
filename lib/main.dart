@@ -35,9 +35,18 @@ class MyApp extends StatelessWidget {
       initialRoute: 'login',
       routes: {
         'login': (context) => LoginPage(),
-        'navigation': (context) => NavigationPage(),
-        'despacho': (context) => DespachoPage(),
-        'map': (context) => MapaPage(),
+        'home': (context) => HomePage(),
+        'membresias': (context) => VentaMembresiasPage(),
+        'servicios': (context) => VentaServiciosPage(),
+        'articulos': (context) => VentaArticulosPage(),
+        'agenda': (context) => AgendaServiciosPage(),
+        'propiedades': (context) => PropiedadesPage(),
+        'carrito': (context) => CarritoComprasPage(),
+        'mensajes': (context) => MensajesPage(),
+        'profile': (context) => ProfilePage(),
+
+        // 'despacho': (context) => DespachoPage(),
+        // 'navigation': (context) => NavigationPage(),
       },
     );
   }

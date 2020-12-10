@@ -6,6 +6,7 @@ class ProfilePage extends StatelessWidget {
     final _prefs = new UserPreferences();
     final height = MediaQuery.of(context).size.height;
     return Scaffold(
+      appBar: AppBar(),
       body: SafeArea(
         child: Container(
           height: height,
